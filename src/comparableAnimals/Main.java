@@ -17,7 +17,7 @@ public class Main {
 	        a.eat(200);
 	    }
 	    Arrays.sort(animals);
-	    printArray(animals);
+	    printArray(animals); 	
 	}
 	
 	public static void printArray(Animal[] arr) {
