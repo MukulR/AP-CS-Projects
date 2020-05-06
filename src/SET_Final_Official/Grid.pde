@@ -54,8 +54,24 @@ public class Grid {
                               // You may wish to look up how the Location class decides
                               // how to compare two different locations.  Also look up the
                               // documentation on ArrayList to see how sort(null) works
-
-    // YOU WRITE THIS
+    
+    if(cardsInPlay > 12 || deck.size() == 0){
+      for(int j = 0; j < 3; j++){
+        if(currentCols - 1 == selectedLocs.get(j).getCol()){
+             board[selectedLocs.get(j).getCol()][selectedLocs.get(j).getRow()] = null;
+        } else {
+          board[selectedLocs.get(j).getCol()][selectedLocs.get(j).getRow()] = board[currentCols - 1][j];
+          board[currentCols - 1][j] = null;
+        }
+      }
+      cardsInPlay = cardsInPlay - 3;
+      currentCols--;
+    } else if(cardsInPlay == 12 && deck.size() >= 3){
+      //if set is within original board size, simply deal new cards in the location of the set cards
+      board[selectedLocs.get(0).getCol()][selectedLocs.get(0).getRow()] = deck.deal();
+      board[selectedLocs.get(1).getCol()][selectedLocs.get(1).getRow()] = deck.deal();
+      board[selectedLocs.get(2).getCol()][selectedLocs.get(2).getRow()] = deck.deal();
+    }
   }
   
   // Precondition: Three cards have been selected by the player
@@ -65,7 +81,10 @@ public class Grid {
       score += 10;
       removeSet();
       if (isGameOver()) {
-        // YOU WRITE THIS
+        state = State.GAME_OVER;
+        runningTimerEnd = millis();
+        timerScore();
+        message = 7;
       } else {
         state = State.PLAYING;
         message = 1;
@@ -85,6 +104,7 @@ public class Grid {
     int cols = cardsInPlay / 3;
     for (int col = 0; col < cols; col++) {
       for (int row = 0; row < ROWS; row++) {
+        System.out.println("str: " + col + " strow: " + row);
         board[col][row].display(col, row);
       }
     }
@@ -132,19 +152,42 @@ public class Grid {
   //                the array board contains the cards that are on the board
   // Postconditions: board has been updated to include the card
   //                the number of cardsInPlay has been increased by one
-  public void addCardToBoard(Card card) {
-    // YOU WRITE THIS
+  public void addCardToBoard(Card card) { //<>//
+    int col = 0;
+    int row = cardsInPlay;
+    while(row >= ROWS){
+      col++;
+      row = row - ROWS;
+    }
+    System.out.println("col:" + col + " row: " + row); 
+    board[col][row] = card;
+    cardsInPlay++;
   }
     
   public void addColumn() {
-    // YOU WRITE THIS
+    if(deck.size() == 0){
+      message = 5;
+      return;
+    } else if (findSet().size() == 0){
+      score += 5;
+      currentCols++;
+      for(int i = 0; i < 3; i++){
+        addCardToBoard(deck.deal());
+      }
+      message = 3;
+    } else if (findSet().size() > 0){
+      score = score - 5;
+      message = 4;
+    }
   }
 
   
   // GAME PROCEDURES
   
   public boolean isGameOver() {
-    // YOU WRITE THIS
+    if(deck.size() == 0 && findSet().size() == 0){
+      return true;
+    }
     return false;
   }
 

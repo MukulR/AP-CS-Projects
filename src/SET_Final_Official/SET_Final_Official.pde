@@ -70,7 +70,7 @@ public final String keyOptions = "q, w, e, r, [t, y, u]: top row;\na, s, d, f, [
                                  "+ to add cards, - to find a set, SPACE to pause, ENTER/RETURN for a new game";
 
 public final color BACKGROUND_COLOR = color(189, 195, 199);
-public final color SELECTED_HIGHLIGHT = #FFDD00;
+public final color SELECTED_HIGHLIGHT = #FFDD00; //<>//
 public final color CORRECT_HIGHLIGHT = #00FF00;
 public final color INCORRECT_HIGHLIGHT = #FF0000;
 public final color FOUND_HIGHLIGHT = #11CCCC;
@@ -95,7 +95,7 @@ public enum State { PLAYING, EVAL_SET, FIND_SET, GAME_OVER, PAUSED };
 State state = State.PLAYING;
 
 void setup() {
-  size(1056, 568);
+  size(1056, 568, P3D);
   background(BACKGROUND_COLOR);
   
   fill(#000000);
@@ -208,19 +208,16 @@ public void newGame() {
   // YOUR_CODE_HERE
   deck = new Deck();
   grid = new Grid();
-  currentCols = 4;
   score = 0;
+  currentCols = 5;
   state = State.PLAYING;
-  
-  message = 0;                                       
+  message = 0;
   timeElapsed = 0;
   runningTimerStart = millis();
-  for(int i = 0; i < currentCols; i++){
-    for(int j = 0; j < ROWS; j++){
-      grid.board[i][j] = deck.deal();
-    }
+  for(int i = 0; i < currentCols * ROWS; i++){
+    grid.addCardToBoard(deck.deal());
   }
-  
+    
 }
 
 public void initFonts() {
@@ -242,7 +239,7 @@ public void initSpriteSheet() {
   // for profit without written consent by copyright holder(s).
   //String url = "https://amiealbrecht.files.wordpress.com/2016/08/set-cards.jpg?w=1250";
   String imageFile = "set-cards.jpg";
-  // Need string that says "Loading..." 
+  // Need string that says "Loading..." here
   cimg = loadImage(imageFile, "jpg");  
 }
 

@@ -41,5 +41,9 @@ public int timerScore() {
   //
   // If it took 277 seconds to finish the game, this should return 23 (300-277=23)
   // If it took 435 seconds to finish the game, this should return 0 (435 > 300)
+  
+  if(timeElapsed < 300){
+    return 300 - timeElapsed;
+  }
   return 0;
 }
