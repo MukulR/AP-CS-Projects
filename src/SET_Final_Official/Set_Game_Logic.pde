@@ -13,41 +13,49 @@ boolean allDifferent(int a, int b, int c){
 }
 
 boolean sameColor(Card a, Card b, Card c) {
+  //0: Green, 1: Purple, 2: Red
   int[] colors = {0,0,0,1,1,1,2,2,2};
   return allEqual(colors[a.getCol()], colors[b.getCol()], colors[c.getCol()]);
 }
 
 boolean sameShape(Card a, Card b, Card c) {
+  //0: Diamond, 1: Cylinder, 2: Squiggle
   int[] shapes = {0,1,2,0,1,2,0,1,2};
   return allEqual(shapes[a.getCol()], shapes[b.getCol()], shapes[c.getCol()]);
 }
 
 boolean sameFill(Card a, Card b, Card c) {
+    //0: Solid, 1: Dashed, 2: Empty
   int[] fills = {0,0,0,1,1,1,2,2,2};
   return allEqual(fills[a.getRow()], fills[b.getRow()], fills[c.getRow()]);
 }
 
 boolean sameCount(Card a, Card b, Card c) {
+  //1: 1 card, 2: 2 cards, 3: 3 cards
   int[] counts = {1,2,3,1,2,3,1,2,3};
   return allEqual(counts[a.getRow()], counts[b.getRow()], counts[c.getRow()]);
 }
 
 boolean diffColor(Card a, Card b, Card c) {
+  //0: Green, 1: Purple, 2: Red
   int[] colors = {0,0,0,1,1,1,2,2,2};
   return allDifferent(colors[a.getCol()], colors[b.getCol()], colors[c.getCol()]);
 }
 
 boolean diffShape(Card a, Card b, Card c) {
+  //0: Diamond, 1: Cylinder, 2: Squiggle
   int[] shapes = {0,1,2,0,1,2,0,1,2};
   return allDifferent(shapes[a.getCol()], shapes[b.getCol()], shapes[c.getCol()]);
 }
 
 boolean diffFill(Card a, Card b, Card c) {
+  //0: Solid, 1: Dashed, 2: Empty
   int[] fills = {0,0,0,1,1,1,2,2,2};
   return allDifferent(fills[a.getRow()], fills[b.getRow()], fills[c.getRow()]);
 }
 
 boolean diffCount(Card a, Card b, Card c) {
+  //1: 1 card, 2: 2 cards, 3: 3 cards
   int[] counts = {1,2,3,1,2,3,1,2,3};
   return allDifferent(counts[a.getRow()], counts[b.getRow()], counts[c.getRow()]);
 }  

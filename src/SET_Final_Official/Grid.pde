@@ -56,15 +56,17 @@ public class Grid {
                               // documentation on ArrayList to see how sort(null) works
     
     if(cardsInPlay > 12 || deck.size() == 0){
-      for(int j = 0; j < 3; j++){
-        if(currentCols - 1 == selectedLocs.get(j).getCol()){
-             board[selectedLocs.get(j).getCol()][selectedLocs.get(j).getRow()] = null;
+      int k = 0;
+      for(int i = 0; i < 3; i++){
+        if(notInSet(currentCols - 1, i, selectedLocs)){
+          board[selectedLocs.get(k).getCol()][selectedLocs.get(k).getRow()] = board[currentCols - 1][i];
+          board[currentCols - 1][i] = null;
+          k++;
         } else {
-          board[selectedLocs.get(j).getCol()][selectedLocs.get(j).getRow()] = board[currentCols - 1][j];
-          board[currentCols - 1][j] = null;
+          board[currentCols - 1][i] = null;
         }
       }
-      cardsInPlay = cardsInPlay - 3;
+      cardsInPlay -= 3;
       currentCols--;
     } else if(cardsInPlay == 12 && deck.size() >= 3){
       //if set is within original board size, simply deal new cards in the location of the set cards
