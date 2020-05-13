@@ -48,7 +48,7 @@ public class OnlinePurchaseManager {
  * To write the getCheapestGizmoByMaker() method, I would make the following changes:
  * Write the method with header: public Gizmo getCheapestGizmoByMaker(String maker)
  * Add a "price" field in the gizmo class: private int price;
- * Add a price parameter in the constructor so the price field can be set
+ * Add a price parameter in the gizmo constructor so the price field can be set
  * Add a method in the gizmo class that returns the price of a gizmo: 
  *     getPrice() { return this.price; } 
  */
