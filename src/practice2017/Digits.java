@@ -7,11 +7,13 @@ public class Digits {
 	
 	public Digits (int num) {
 		digitList = new ArrayList<Integer>();
-		int i = Integer.toString(num).length() - 1;
-		while(i >= 0) {
-			digitList.add(i, num % 10);
-			num /= 10;
-			i--;
+		if(num == 0) {
+			digitList.add(0);
+		} else {
+			while(num > 0) {
+				digitList.add(0, num % 10);
+				num /= 10;
+			}
 		}
 	}
 	
@@ -25,5 +27,10 @@ public class Digits {
 			}
 		}
 		return true;
+	}
+	
+	public static void main(String args[]) {
+		Digits dg = new Digits(65310);
+		System.out.println(dg.isStrictlyIncreasing());
 	}
 }
