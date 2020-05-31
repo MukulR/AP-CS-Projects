@@ -7,7 +7,7 @@ public class Insertionsort {
 	}
 	
 	public static void insertionSort(int[] arr) {
-		int temp = 0;
+		//int temp = 0;
 		for(int i = 1; i < arr.length; i++) {
 			int elem = arr[i];
 			int j = i - 1;
